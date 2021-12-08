@@ -1,0 +1,30 @@
+package edu.rice.sfs.registry.database.po;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.relational.core.mapping.Table;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Table("entity")
+public class EntityPO implements Persistable<String> {
+
+  @Id
+  private String name;
+  private String description;
+
+  @Transient
+  private boolean isNew;
+
+  @Override
+  public String getId() {
+    return name;
+  }
+}
